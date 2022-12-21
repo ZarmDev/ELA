@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/DirtTileset.png" type="Texture" id=2]
+[ext_resource path="res://roguelike-pack/Spritesheet/roguelikeSheet_transparent.png" type="Texture" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 0, 0, 17, 0, 17, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=2]
+1/name = "DirtTileset.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 1
+1/autotile/bitmask_mode = 1
+1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 48, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 56, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 2, 3 ), 24, Vector2( 3, 0 ), 144, Vector2( 3, 1 ), 146, Vector2( 3, 2 ), 18, Vector2( 3, 3 ), 16 ]
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 16, 16 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "roguelikeSheet_transparent.png 2"
+2/texture = ExtResource( 3 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 51, 272, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 1 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "roguelikeSheet_transparent.png 3"
+3/texture = ExtResource( 3 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 16, 442, 17, 16 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 3 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+
+[node name="Cutscene" type="Node2D"]
+position = Vector2( -53, -14 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 131081, 2, 0, 131082, 2, 0, 131083, 2, 0, 131084, 2, 0, 131085, 2, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 131089, 2, 0, 131090, 2, 0, 131091, 2, 0, 131092, 2, 0, 131093, 2, 0, 131094, 2, 0, 131095, 2, 0, 131096, 2, 0, 131097, 2, 0, 131098, 2, 0, 131099, 2, 0, 131100, 2, 0, 131101, 2, 0, 131102, 2, 0, 131103, 2, 0, 131104, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0, 196626, 2, 0, 196627, 2, 0, 196628, 2, 0, 196629, 2, 0, 196630, 2, 0, 196631, 2, 0, 196632, 2, 0, 196633, 2, 0, 196634, 2, 0, 196635, 2, 0, 196636, 2, 0, 196637, 2, 0, 196638, 2, 0, 196639, 2, 0, 196640, 2, 0, 262153, 2, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 0, 262166, 2, 0, 262167, 2, 0, 262168, 2, 0, 262169, 2, 0, 262170, 2, 0, 262171, 2, 0, 262172, 2, 0, 262173, 2, 0, 262174, 2, 0, 262175, 2, 0, 262176, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 1, 0, 327692, 1, 1, 327693, 1, 1, 327694, 1, 1, 327695, 1, 1, 327696, 1, 1, 327697, 1, 1, 327698, 1, 1, 327699, 1, 1, 327700, 1, 1, 327701, 1, 1, 327702, 1, 1, 327703, 1, 1, 327704, 1, 1, 327705, 1, 1, 327706, 1, 1, 327707, 1, 1, 327708, 1, 1, 327709, 1, 1, 327710, 1, 2, 327711, 2, 0, 327712, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 1, 65536, 393228, 1, 65537, 393229, 1, 65537, 393230, 1, 65537, 393231, 1, 65537, 393232, 1, 65537, 393233, 1, 65537, 393234, 1, 65537, 393235, 1, 65537, 393236, 1, 65537, 393237, 1, 65537, 393238, 1, 65537, 393239, 1, 65537, 393240, 1, 65537, 393241, 1, 65537, 393242, 1, 65537, 393243, 1, 65537, 393244, 1, 65537, 393245, 1, 65537, 393246, 1, 65538, 393247, 2, 0, 393248, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 1, 131072, 458764, 1, 131073, 458765, 1, 131073, 458766, 1, 131073, 458767, 1, 131073, 458768, 1, 131073, 458769, 1, 131073, 458770, 1, 131073, 458771, 1, 131073, 458772, 1, 131073, 458773, 1, 131073, 458774, 1, 131073, 458775, 1, 131073, 458776, 1, 131073, 458777, 1, 131073, 458778, 1, 131073, 458779, 1, 131073, 458780, 1, 131073, 458781, 1, 131073, 458782, 1, 131074, 458783, 2, 0, 458784, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 3, 0, 524300, 3, 0, 524301, 3, 0, 524302, 3, 0, 524303, 3, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 524307, 3, 0, 524308, 3, 0, 524309, 3, 0, 524310, 3, 0, 524311, 3, 0, 524312, 3, 0, 524313, 3, 0, 524314, 3, 0, 524315, 3, 0, 524316, 3, 0, 524317, 3, 0, 524318, 3, 0, 524319, 2, 0, 524320, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 589854, 2, 0, 589855, 2, 0, 589856, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655373, 2, 0, 655374, 2, 0, 655375, 2, 0, 655376, 2, 0, 655377, 2, 0, 655378, 2, 0, 655379, 2, 0, 655380, 2, 0, 655381, 2, 0, 655382, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 2, 0, 655390, 2, 0, 655391, 2, 0, 655392, 2, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 210, 118 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 210, 118 )
+current = true
