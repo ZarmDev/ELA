@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://pls.png" type="Texture" id=1]
+[ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CanvasModulate.gd" type="Script" id=3]
+[ext_resource path="res://Pls.gd" type="Script" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends ColorRect
+
+onready var label = $Label
+onready var colorRect = self
+
+var textPiece = ''
+
+func text(value):
+	colorRect.visible = true
+	textPiece = ''
+	for i in range(len(value)):
+		textPiece += value[i]
+		label.text = textPiece
+		yield(get_tree().create_timer(0.05), \"timeout\")
+	yield(get_tree().create_timer(5.0), \"timeout\")
+	colorRect.visible = false
+
+
+func _ready():
+	colorRect.visible = false
+	text(\"You...? : I'm in the city.\")
+	yield(get_tree().create_timer(2.0), \"timeout\")
+	text('I need you to investigate this guy. *Click*')
+"
+
+[node name="Cityscape" type="Node2D"]
+
+[node name="Pls" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 155.75, 106 )
+scale = Vector2( 5.10156, 3.28125 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Pls"]
+
+[node name="Tween2" type="Tween" parent="Pls"]
+
+[node name="Tween3" type="Tween" parent="Pls"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 22.0
+margin_top = 128.0
+margin_right = 301.0
+margin_bottom = 174.0
+color = Color( 0.215686, 0.188235, 0.188235, 0.192157 )
+script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Test"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
+visible = false
+color = Color( 0.654902, 0.129412, 0.129412, 1 )
+script = ExtResource( 3 )

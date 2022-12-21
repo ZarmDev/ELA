@@ -1,0 +1,251 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Past.gd" type="Script" id=3]
+[ext_resource path="res://pixil-frame-0 (19).png" type="Texture" id=4]
+[ext_resource path="res://brim.png" type="Texture" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+var hearts = 4 setget set_hearts
+var max_hearts = 4 setget set_max_hearts
+
+onready var heartUIFull = $HeartUIFull
+onready var heartUIEmpty = $HeartUIEmpty
+
+func set_hearts(value):
+	hearts = clamp(value, 0, max_hearts)
+	if heartUIFull != null:
+		heartUIFull.rect_size.x = hearts * 15
+	
+func set_max_hearts(value):
+	max_hearts = max(value, 1)
+	self.hearts = min(hearts, max_hearts)
+	if heartUIEmpty != null:
+		heartUIEmpty.rect_size.x = max_hearts * 15
+	
+func _ready():
+	self.max_hearts = PlayerStats.max_health
+	self.hearts = PlayerStats.health
+	PlayerStats.connect(\"health_changed\", self, \"set_hearts\")
+	PlayerStats.connect(\"max_health_changed\", self, \"set_max_hearts\")
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends ColorRect
+
+onready var label = $Label
+onready var colorRect = self
+
+var textPiece = ''
+
+func text(value):
+	colorRect.visible = true
+	textPiece = ''
+	for i in range(len(value)):
+		textPiece += value[i]
+		label.text = textPiece
+		yield(get_tree().create_timer(0.05), \"timeout\")
+	yield(get_tree().create_timer(5.0), \"timeout\")
+	colorRect.visible = false
+
+
+func _ready():
+	colorRect.visible = false
+	text('We are in the past.')
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends CanvasModulate
+"
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 351.5, 44 )
+
+[node name="Past" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 91 )
+current = true
+smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
+script = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 22.0
+margin_top = 128.0
+margin_right = 301.0
+margin_bottom = 174.0
+color = Color( 0.215686, 0.188235, 0.188235, 0.192157 )
+script = SubResource( 2 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Test"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
+visible = false
+color = Color( 0.654902, 0.129412, 0.129412, 1 )
+script = SubResource( 3 )
+
+[node name="WindowDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 1.0
+margin_top = 21.0
+margin_right = 321.0
+margin_bottom = 182.0
+window_title = "Email"
+
+[node name="PopupDialog" type="PopupDialog" parent="CanvasLayer"]
+margin_left = 2.0
+margin_top = 31.0
+margin_right = 302.0
+margin_bottom = 71.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PopupDialog"]
+margin_left = 10.0
+margin_top = 11.0
+margin_right = 50.0
+margin_bottom = 25.0
+text = "Hey Man. Want to make a business together?"
+
+[node name="PopupDialog2" type="PopupDialog" parent="CanvasLayer"]
+margin_left = 74.0
+margin_top = 108.0
+margin_right = 308.0
+margin_bottom = 148.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PopupDialog2"]
+margin_left = 2.0
+margin_top = 8.0
+margin_right = 228.0
+margin_bottom = 38.0
+text = "Sure? What kind?"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="CanvasLayer"]
+margin_left = 31.0
+margin_top = 57.0
+margin_right = 231.0
+margin_bottom = 127.0
+dialog_text = "Make event for tommorow"
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
+margin_left = -1.0
+margin_top = 156.0
+margin_right = 89.0
+margin_bottom = 183.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PopupPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 86.0
+margin_bottom = 23.0
+text = "Meet him."
+
+[node name="House" type="Sprite" parent="."]
+position = Vector2( 179, -30.5 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="House5" type="Sprite" parent="."]
+position = Vector2( 354, -32 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="House2" type="Sprite" parent="."]
+modulate = Color( 0.388235, 0.356863, 0.164706, 1 )
+position = Vector2( 52, -28 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="House6" type="Sprite" parent="."]
+modulate = Color( 0.388235, 0.356863, 0.164706, 1 )
+position = Vector2( 543, -30 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="House3" type="Sprite" parent="."]
+modulate = Color( 0.388235, 0.356863, 0.164706, 1 )
+position = Vector2( 87, 92 )
+scale = Vector2( 2.8125, 2.92188 )
+z_index = 2
+texture = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="House3"]
+position = Vector2( -2.48889, 1.19787 )
+scale = Vector2( 0.0696151, 0.121536 )
+texture = ExtResource( 4 )
+texture_scale = 8.14
+color = Color( 0.184314, 0.184314, 0.184314, 1 )
+energy = 2.04
+mode = 3
+
+[node name="House7" type="Sprite" parent="."]
+modulate = Color( 0.388235, 0.356863, 0.164706, 1 )
+position = Vector2( 492, 120 )
+scale = Vector2( 2.8125, 2.92188 )
+z_index = 2
+texture = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="House7"]
+position = Vector2( -2.48889, 1.19787 )
+scale = Vector2( 0.0696151, 0.121536 )
+texture = ExtResource( 4 )
+texture_scale = 8.14
+color = Color( 0.184314, 0.184314, 0.184314, 1 )
+energy = 2.04
+mode = 3
+
+[node name="House4" type="Sprite" parent="."]
+modulate = Color( 0.203922, 0.180392, 0.121569, 1 )
+position = Vector2( 269, 89 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="Light2D2" type="Light2D" parent="House4"]
+position = Vector2( -0.711121, 2.05348 )
+scale = Vector2( 0.0696151, 0.121536 )
+texture = ExtResource( 4 )
+texture_scale = 8.14
+color = Color( 0.184314, 0.184314, 0.184314, 1 )
+energy = 2.04
+mode = 3
+
+[node name="House8" type="Sprite" parent="."]
+modulate = Color( 0.203922, 0.180392, 0.121569, 1 )
+position = Vector2( 736, 120 )
+scale = Vector2( 2.8125, 2.92188 )
+texture = ExtResource( 5 )
+
+[node name="Light2D2" type="Light2D" parent="House8"]
+position = Vector2( -0.711121, 2.05348 )
+scale = Vector2( 0.0696151, 0.121536 )
+texture = ExtResource( 4 )
+texture_scale = 8.14
+color = Color( 0.184314, 0.184314, 0.184314, 1 )
+energy = 2.04
+mode = 3
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160, 91 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 159.5, 33 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 164, 150 )
+shape = SubResource( 4 )
